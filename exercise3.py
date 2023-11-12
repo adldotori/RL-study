@@ -113,7 +113,7 @@ def draw_value_map(name: str, problem: Problem, value_map: list[list[float]]):
         )
 
     # save image
-    fig.write_image(f"images/{name}-{problem.name}.png")
+    fig.write_image(f"images/3_{name}-{problem.name}.png")
 
 
 def policy_evaluation(problem: Problem):
@@ -130,7 +130,7 @@ def policy_evaluation(problem: Problem):
         value_map = new_value_map
         i += 1
 
-    draw_value_map("Policy Evaluation", problem, value_map)
+    draw_value_map("PolicyEvaluation", problem, value_map)
 
 
 def value_iteration(problem: Problem):
@@ -147,7 +147,7 @@ def value_iteration(problem: Problem):
         value_map = new_value_map
         i += 1
 
-    draw_value_map("Value Iteration", problem, value_map)
+    draw_value_map("ValueIteration", problem, value_map)
 
 
 if __name__ == "__main__":
