@@ -134,7 +134,7 @@ def main():
                 )
 
     reward_dataframe = pd.DataFrame(reward_data)
-    reward_dataframe.to_csv("reward_data.csv", index=None)
+    reward_dataframe.to_csv("files/2_reward_data.csv", index=None)
 
 
 if __name__ == "__main__":
