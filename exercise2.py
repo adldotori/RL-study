@@ -16,10 +16,10 @@ class Policy:
     def __init__(self, arms: list[Arm]):
         self.arms = arms
 
-    def select_arm(self):
+    def select_arm(self) -> int:
         raise NotImplementedError
 
-    def update(self, arm: Arm, reward: float):
+    def update(self, arm: int, reward: float) -> None:
         raise NotImplementedError
 
 
@@ -27,12 +27,12 @@ class Greedy(Policy):
     def __init__(self, arms: list[Arm]):
         super().__init__(arms)
         self.N = [0] * len(arms)
-        self.Q = [0] * len(arms)
+        self.Q = [0.0] * len(arms)
 
-    def select_arm(self):
+    def select_arm(self) -> int:
         return self.Q.index(max(self.Q))
 
-    def update(self, arm: Arm, reward: float):
+    def update(self, arm: int, reward: float) -> None:
         self.N[arm] += 1
         self.Q[arm] += (1 / self.N[arm]) * (reward - self.Q[arm])
 
@@ -42,15 +42,15 @@ class EpsilonGreedy(Policy):
         super().__init__(arms)
         self.epsilon = epsilon
         self.N = [0] * len(arms)
-        self.Q = [0] * len(arms)
+        self.Q = [0.0] * len(arms)
 
-    def select_arm(self):
+    def select_arm(self) -> int:
         if random.random() < self.epsilon:
             return random.randint(0, len(self.arms) - 1)
         else:
             return self.Q.index(max(self.Q))
 
-    def update(self, arm: Arm, reward: float):
+    def update(self, arm: int, reward: float) -> None:
         self.N[arm] += 1
         self.Q[arm] += (1 / self.N[arm]) * (reward - self.Q[arm])
 
@@ -59,13 +59,13 @@ class UCB(Policy):
     def __init__(self, arms: list[Arm]):
         super().__init__(arms)
         self.N = [0] * len(arms)
-        self.Q = [0] * len(arms)
-        self.QU = [0] * len(arms)
+        self.Q = [0.0] * len(arms)
+        self.QU = [0.0] * len(arms)
 
-    def select_arm(self):
+    def select_arm(self) -> int:
         return self.QU.index(max(self.QU))
 
-    def update(self, arm: Arm, reward: float):
+    def update(self, arm: int, reward: float) -> None:
         self.N[arm] += 1
         self.Q[arm] += (1 / self.N[arm]) * (reward - self.Q[arm])
         for i in range(len(self.QU)):
@@ -81,13 +81,13 @@ class ThompsonSampling(Policy):
         self.S = [0] * len(arms)
         self.F = [0] * len(arms)
 
-    def select_arm(self):
-        self.Q = [0] * len(self.arms)
+    def select_arm(self) -> int:
+        self.Q = [0.0] * len(self.arms)
         for i in range(len(self.arms)):
             self.Q[i] = random.betavariate(self.S[i] + 1, self.F[i] + 1)
         return self.Q.index(max(self.Q))
 
-    def update(self, arm: Arm, reward: float):
+    def update(self, arm: int, reward: float) -> None:
         self.N[arm] += 1
         if reward == 1:
             self.S[arm] += 1

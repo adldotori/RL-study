@@ -50,7 +50,7 @@ def update_value_for_policy(problem: Problem, value_map: list[list[float]]):
 
 def update_value(problem: Problem, value_map: list[list[float]]):
     new_value_map = [
-        [0 for _ in range(len(problem.map[0]))] for _ in range(len(problem.map))
+        [0.0 for _ in range(len(problem.map[0]))] for _ in range(len(problem.map))
     ]
 
     for i in range(len(problem.map)):
@@ -135,7 +135,7 @@ def policy_evaluation(problem: Problem):
 
 def value_iteration(problem: Problem):
     value_map = [
-        [0 for _ in range(len(problem.map[0]))] for _ in range(len(problem.map))
+        [0.0 for _ in range(len(problem.map[0]))] for _ in range(len(problem.map))
     ]
     i = 0
     while True:
@@ -156,7 +156,7 @@ if __name__ == "__main__":
         map=[[1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1], [1, 1, 1, 1]],
         actions=[[0, 1], [0, -1], [1, 0], [-1, 0]],
         start=[],
-        end=[[0, 0], [3, 3]],
+        end=[(0, 0), (3, 3)],
         reward_per_step=-1,
     )
 
@@ -178,8 +178,8 @@ if __name__ == "__main__":
             [1, 0],
             [-1, 0],
         ],
-        start=[[2, 0]],
-        end=[[6, 7]],
+        start=[(2, 0)],
+        end=[(6, 7)],
         reward_per_step=-1,
     )
     policy_evaluation(easy)

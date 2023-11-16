@@ -17,7 +17,7 @@ STAY = 1
 def print_colored(text, *args):
     text = text.replace("Player", f"{Fore.green}Player{Style.reset}")
     text = text.replace("Dealer", f"{Fore.rgb(255,124,198)}Dealer{Style.reset}")
-    # print(text, *args)
+    print(text, *args)
 
 
 class Deck:
@@ -421,9 +421,9 @@ if __name__ == "__main__":
     num_episode_per_round = 1000
     dealer = Dealer()
 
-    # game = BlackJack(dealer, PlayerUser())
-    # print(game.play())
-
+    game = BlackJack(dealer, PlayerUser())
+    print(game.play())
+    exit()
     players = [PlayerBase(), PlayerMC(), PlayerSARSA(), PlayerQ(), PlayerDQ()]
 
     for player in players:
