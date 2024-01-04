@@ -145,7 +145,7 @@ def main():
     plt.ylabel("Steps")
     plt.show()
     # save image
-    plt.savefig("images/8_DynaQ.png")
+    plt.savefig("images/6_DynaQ.png")
 
 
 if __name__ == "__main__":

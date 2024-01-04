@@ -92,7 +92,7 @@ class Player:
                 [state[0], state[1], state[2], round(q_hit, 3), round(q_stay, 3)]
             )
         df = pd.DataFrame(data, columns=["Ace", "Value", "Dealer", "Hit", "Stay"])
-        df.to_csv(f"files/9_{file_name}.csv", index=False)
+        df.to_csv(f"files/7_{file_name}.csv", index=False)
 
     def __repr__(self):
         return f"{self.cards} ({self.value})"
@@ -285,4 +285,4 @@ if __name__ == "__main__":
             xaxis_title="Episode",
             yaxis_title="Win rate",
         )
-        fig.write_image(f"images/9_{player.__class__.__name__}.png")
+        fig.write_image(f"images/7_{player.__class__.__name__}.png")
